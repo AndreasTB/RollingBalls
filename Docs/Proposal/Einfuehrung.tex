@@ -1,0 +1,38 @@
+\chapter{Einführung}
+Im Fach Fortgeschrittene Spieleentwicklung soll von den Projektgruppen ein Spiel in C++ und OpenGL erstellt werden. Hierbei soll der Fokus vor allem auf den grafischen Effekten liegen.
+
+Unsere Projektgruppe hat sich für einen Ableger des bekannten Spiels Tower Defense entschieden und das Projekt Rolling Balls genannt.
+
+\section{Spielprinzip}
+Rolling Balls besteht aus einer einfachen Fläche als Spielumgebung. Ziel des Spiels ist es, rollende Kugeln zu zerstören, bevor diese das Ende der Spielfläche erreichen. Die Spielfläche wird in ein Grid unterteilt und der Spieler kann auf jedes Grid einen Turm bauen, der die heranrollenden Kugeln zerstören kann. In der ersten Implementierung werden die Kugeln jeden Turm, mit dem sie kollidieren beschädigen und zerstören, sofern sie nicht schnell von den Türmen bekämpft werden. 
+
+\subsection{Schwierigkeitsgrad}
+Der Spieler kann den Schwierigkeitsgrad selber wählen, hierbei stehen verschiedene Möglichkeiten zur Schwierigkeitssteuerung zur Verfügung:
+\begin{itemize}
+	\item Rollgeschwindigkeit der Kugeln (je schneller, desto schwerer)
+	\item Breite des Spielfelds (je breiter, desto schwerer)
+	\item Länge des Spielfelds (je länger, desto leichter)
+\end{itemize}
+
+\subsection{Economy}
+Der Spieler braucht eine Menge X an Spielwährung, die er benötigt, um sich einen Turm zu kaufen.
+Für jede abgeschossene Kugel erhält der Spieler eine Summe an Geldwährung. Sobald der Spieler genügend Kugeln zerstört hat, kann er sich einen Turm kaufen.
+
+\subsection{Spielende}
+Es gibt kein fixes Spielende, jede Runde werden mehr Kugeln erzeugt, die aufgehalten werden müssen. Der Spieler hat eine bestimmte Anzahl an Leben und für jede Kugel, die das Ende des Spielfelds erreicht, wird dem Spieler ein Leben abgezogen. Sobald der Spieler keine Leben mehr hat, wird das Spiel beendet. Der Spieler erhält pro zerstörter Kugel Spielpunkte, welche am Ende als Highscore angezeigt werden.
+
+\chapter{Prototyp}
+Der Prototyp wird erstellt, um die generelle Spielidee vorzuführen. Hierbei wird auf THREE.js und WebGL zurückgegriffen.
+Im Prototyp werden folgende Funktionalitäten verfügbar sein:
+\begin{itemize}
+	\item Darstellung des Spielfelds
+	\item Einteilung des Spielfelds in Grids
+	\item Erscheinen der Spielkugeln als THREE.Sphere
+	\item Türme werden als THREE.Cube dargestellt
+	\item Interaktion mit dem Spielfeld zum Bauen der Türme
+\end{itemize}
+
+was brauchen wir für den Prototypen
+wer macht was
+welche abhängigkeiten (was muss vor etwas anderem erledigt sein)
+Projektplan
