@@ -82,7 +82,7 @@ Class=CLatexEdit
 Document=Einfuehrung.tex
 
 [Frame2_Row0]
-cyCur=293
+cyCur=322
 cyMin=10
 
 [Frame2_Col0]
@@ -90,7 +90,7 @@ cxCur=1139
 cxMin=10
 
 [Frame2_View0,0]
-Cursor.row=33
-Cursor.column=0
-TopSubLine=28
+Cursor.row=27
+Cursor.column=33
+TopSubLine=36
 

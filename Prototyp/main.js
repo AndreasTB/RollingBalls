@@ -30,7 +30,7 @@ function main ()
     lightSource.position.set(30, 20, 20);    
     scene.add(lightSource);
    
-    camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 1, 9000);
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 9000);
     camera.position.z = 300;
     camera.position.y = 0;
     camera.position.x = 420;
@@ -48,12 +48,15 @@ function main ()
         side: THREE.DoubleSide,
         map: playingFieldTexture
     }); 
-
+	
+	towerCount = 0;
+	towerArray = new Array();
     
     playingFieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), playingFieldMaterial);
     playingFieldArray = new Array();
     for (var i=0.0; i<1000.0; i+=100.0)
-    {
+    {	
+		towerArray[i/100] = new Array();
         playingFieldArray[i/100] = new Array();
         for (var j=0.0; j<1000.0; j+=100.0)
         {
@@ -61,8 +64,14 @@ function main ()
             playingFieldCell.position = new THREE.Vector3(i, j, 0.0);
             playingFieldArray[i/100][j/100] = playingFieldCell;
             scene.add(playingFieldCell);
+			
+			// Initialisiere TowerArray mit Bullshit
+			towerArray[i/100][j/100] = 0.0;	
         }
     }
+	
+	
+	
     scene.add(playingFieldMesh);
     document.addEventListener('keydown', onKeyDown, false);
     mouseClicked = false;
@@ -70,6 +79,7 @@ function main ()
     mouseY = 0.0;
     selectedField = new THREE.Vector2(5,0);
     hightlightCell(selectedField.x,selectedField.y);
+	
 }
 
 function hightlightCell()
@@ -125,7 +135,11 @@ function onKeyDown(event)
                 selectedField.y = 9;
             }
             hightlightCell();
-            break; 
+            break;
+			
+		//Enter
+		case 13:
+			createTower();
     }
 }
 
@@ -140,4 +154,28 @@ function render ()
 {
     requestAnimationFrame( render );
     renderer.render(scene, camera);
+}
+
+function createTower() {
+	var x = selectedField.x;
+	var y = selectedField.y;
+	
+	var cubeMaterial = new THREE.MeshLambertMaterial(
+		{
+			color: 0x00FFFF
+		}
+	);
+	
+	if( towerArray[x][y] == 0.0) {
+		var cube = new THREE.Mesh (new THREE.BoxGeometry(40,40,100, 1,1,1), cubeMaterial);
+		cube.position = playingFieldArray[x][y].position.clone();
+		cube.position.z += 50;
+		
+		towerArray[x][y] = cube;
+		towerCount++;
+		scene.add(cube);
+	} else {
+		scene.remove(towerArray[x][y]);
+		towerArray[x][y] = 0.0;
+	}
 }
