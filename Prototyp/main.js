@@ -21,10 +21,15 @@ render();
 
 function main ()
 {
+	cellsize = 100.0;
+	fieldX = 10.0;
+	fieldY = 10.0;
+	speed = 2.0;
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+	ballArray = new Array();
 
     lightSource = new THREE.PointLight(0xFFFFFF, 1.0, 0.0);
     lightSource.position.set(30, 20, 20);    
@@ -54,24 +59,22 @@ function main ()
     
     playingFieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), playingFieldMaterial);
     playingFieldArray = new Array();
-    for (var i=0.0; i<1000.0; i+=100.0)
+    for (var i=0.0; i<fieldX; i++)
     {	
-		towerArray[i/100] = new Array();
-        playingFieldArray[i/100] = new Array();
-        for (var j=0.0; j<1000.0; j+=100.0)
+		towerArray[i] = new Array();
+        playingFieldArray[i] = new Array();
+        for (var j=0.0; j<fieldY; j++)
         {
             var playingFieldCell = playingFieldMesh.clone();
-            playingFieldCell.position = new THREE.Vector3(i, j, 0.0);
-            playingFieldArray[i/100][j/100] = playingFieldCell;
+            playingFieldCell.position = new THREE.Vector3(i*cellsize, j*cellsize, 0.0);
+            playingFieldArray[i][j] = playingFieldCell;
             scene.add(playingFieldCell);
 			
 			// Initialisiere TowerArray mit Bullshit
-			towerArray[i/100][j/100] = 0.0;	
+			towerArray[i][j] = 0.0;	
         }
     }
-	
-	
-	
+
     scene.add(playingFieldMesh);
     document.addEventListener('keydown', onKeyDown, false);
     mouseClicked = false;
@@ -140,6 +143,11 @@ function onKeyDown(event)
 		//Enter
 		case 13:
 			createTower();
+			break;
+			
+		case 8: 
+			createBall();
+			break;
     }
 }
 
@@ -154,6 +162,17 @@ function render ()
 {
     requestAnimationFrame( render );
     renderer.render(scene, camera);
+	
+	if(ballArray.length > 0) {
+		for(var bla = 0; bla < ballArray.length; bla++) {
+			ballArray[bla].position.y += speed;
+			
+			if(ballArray[bla].position.y > 0.3 * fieldY * cellsize) {
+				scene.remove(ballArray[bla]);
+				ballArray.splice(bla,1);
+			}
+		}
+	}
 }
 
 function createTower() {
@@ -169,7 +188,7 @@ function createTower() {
 	if( towerArray[x][y] == 0.0) {
 		var cube = new THREE.Mesh (new THREE.BoxGeometry(40,40,100, 1,1,1), cubeMaterial);
 		cube.position = playingFieldArray[x][y].position.clone();
-		cube.position.z += 50;
+		cube.position.z += 20;
 		
 		towerArray[x][y] = cube;
 		towerCount++;
@@ -178,4 +197,20 @@ function createTower() {
 		scene.remove(towerArray[x][y]);
 		towerArray[x][y] = 0.0;
 	}
+}
+
+function createBall() {
+	var ballMaterial = new THREE.MeshLambertMaterial(
+		{
+			color: 0x00FFFF
+		}
+	);
+	var randX = Math.floor((Math.random()*10));
+	
+	var ball = new THREE.Mesh (new THREE.SphereGeometry(30,16,16), ballMaterial);
+		ball.position = playingFieldArray[randX][0].position.clone();
+		ball.position.z += 30;
+
+		ballArray.push(ball);
+		scene.add(ball);
 }
