@@ -59,6 +59,7 @@ function main ()
     
     playingFieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), playingFieldMaterial);
     playingFieldArray = new Array();
+	
     for (var i=0.0; i<fieldX; i++)
     {	
 		towerArray[i] = new Array();
