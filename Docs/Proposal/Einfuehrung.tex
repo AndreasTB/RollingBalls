@@ -22,6 +22,9 @@ Für jede abgeschossene Kugel erhält der Spieler eine Summe an Geldwährung. Sobal
 \subsection{Spielende}
 Es gibt kein fixes Spielende, jede Runde werden mehr Kugeln erzeugt, die aufgehalten werden müssen. Der Spieler hat eine bestimmte Anzahl an Leben und für jede Kugel, die das Ende des Spielfelds erreicht, wird dem Spieler ein Leben abgezogen. Sobald der Spieler keine Leben mehr hat, wird das Spiel beendet. Der Spieler erhält pro zerstörter Kugel Spielpunkte, welche am Ende als Highscore angezeigt werden. Um Exploits während des Spiels zu minimieren, bekommt jede Kugel einen Countdown-Timer. Sobald der Countdown-Timer abgelaufen ist, explodiert die Kugel und zerstört im Umkreis von 2 Feldern in alle Richtungen die Türme. Der Countdown-Timer wird für jede Zeile in Y-Richtung zurückgesetzt, d.h. man hat pro Y-Zeile eine gewisse Zeit, um die Kugel durchzuschleusen oder zu zerstören. Der Timer wird eingeführt, damit eine Kugel sich nicht eine endlos lange Zeit in ein und derselben Y-Zeile befindet.
 
+\subsection{Pathfinding}
+Eine Kugel überprüft, welche der nächsten Felder nicht mit einem Turm bebaut sind. Priorität hat immer die positive Y-Richtung, danach wird in positiver X-Richtung, danach in negativer X-Richtung und zuguter Letzt in negativer Y-Richtung geprüft. Hat eine Kugel sich für eines der nächsten Felder entschieden, so wird dieses Feld für den Turmbau gesperrt, bis die Kugel das nächste Feld verlassen hat. Der Spieler muss dann die Turmbau-Aktion wiederholen, sofern das Feld gesperrt war.
+
 \chapter{Prototyp}
 Der Prototyp wird erstellt, um die generelle Spielidee vorzuführen. Hierbei wird auf THREE.js und WebGL zurückgegriffen.
 Im Prototyp werden folgende Funktionalitäten verfügbar sein:
@@ -33,7 +36,20 @@ Im Prototyp werden folgende Funktionalitäten verfügbar sein:
 	\item Interaktion mit dem Spielfeld zum Bauen der Türme
 \end{itemize}
 
+chapter{Inteface}
+Startbildschirm mit Optionen
+Startbildschirm enthält die Namen der Autoren, einen Start Button und eine Möglichkeit die Spieleinstellungen zu verändern
+
 was brauchen wir für den Prototypen
 wer macht was
 welche abhängigkeiten (was muss vor etwas anderem erledigt sein)
 Projektplan
+
+\chapter{Ideensammlung}
+\begin{itemize}
+	\item Baum errechnen um schnellsten Weg der Kugel zum Ende des Spielfelds zu berechnen (rekursives Prüfen der Position)
+	\item IntroScreen? Einstellung des Spielfelds
+	\item Spielstart darf den Spieler nicht überraschen
+	\item Pause-Funktion (optional)
+	\item Pfadfindung mittels A-Star-Algorithmus
+\end{itemize}

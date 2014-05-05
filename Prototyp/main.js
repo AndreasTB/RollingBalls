@@ -168,7 +168,7 @@ function render ()
 		for(var bla = 0; bla < ballArray.length; bla++) {
 			ballArray[bla].position.y += speed;
 			
-			if(ballArray[bla].position.y > 0.3 * fieldY * cellsize) {
+			if(ballArray[bla].position.y > fieldY * cellsize) {
 				scene.remove(ballArray[bla]);
 				ballArray.splice(bla,1);
 			}
@@ -214,4 +214,7 @@ function createBall() {
 
 		ballArray.push(ball);
 		scene.add(ball);
+}
+
+function breitenSuche() {
 }

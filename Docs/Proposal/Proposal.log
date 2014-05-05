@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.8)  28 APR 2014 16:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.8)  5 MAY 2014 13:02
 entering extended mode
 **E:/2.*Semester/Fortg.*Spiele/master/Docs/Proposal/Proposal.tex
 ("E:/2. Semester/Fortg. Spiele/master/Docs/Proposal/Proposal.tex"
@@ -362,19 +362,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
 
 
+] [3
+
 ]
 Kapitel 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 []\T1/ua1/m/n/10.95 Erscheinen der Spiel-ku-geln als
  []
 
-)
-Underfull \hbox (badness 2221) in paragraph at lines 36--16
+
+Underfull \hbox (badness 2221) in paragraph at lines 43--47
 []\T1/ua1/m/n/10.95 was brau-chen wir für den Pro-to-ty-pen
  []
 
-[3
+[4
+
+
+]
+Kapitel 3.
+) [5
 
 
 ] ("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Proposal.aux"
@@ -385,27 +392,28 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4312 strings out of 493921
- 65522 string characters out of 3144883
- 182676 words of memory out of 3000000
- 7529 multiletter control sequences out of 15000+200000
+ 4313 strings out of 493921
+ 65529 string characters out of 3144883
+ 183676 words of memory out of 3000000
+ 7530 multiletter control sequences out of 15000+200000
  41108 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,9n,51p,1001b,314s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
-rm1095.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <
-C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm14
-40.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
-0\ecbx1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecrm1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\ecbx2488.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\
-ljfour\jknappen\ec\dpi600\ecrm2074.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/doe/AppData/Roaming/MiKTeX/2.9/fo
-nts/type1/urw/arial/ua1b8a.pfb><C:/Users/doe/AppData/Roaming/MiKTeX/2.9/fonts/t
-ype1/urw/arial/ua1r8a.pfb>
-Output written on Proposal.pdf (3 pages, 81368 bytes).
+sl1095.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecrm1095.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8
+r.enc} <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
+0\ecrm1440.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecbx1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
+knappen\ec\dpi600\ecrm1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\
+ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\f
+onts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/doe/AppData/Roaming/MiKTe
+X/2.9/fonts/type1/urw/arial/ua1b8a.pfb><C:/Users/doe/AppData/Roaming/MiKTeX/2.9
+/fonts/type1/urw/arial/ua1r8a.pfb>
+Output written on Proposal.pdf (5 pages, 88237 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
