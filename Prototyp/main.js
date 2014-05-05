@@ -21,20 +21,20 @@ render();
 
 function main ()
 {
-	cellsize = 100.0;
-	fieldX = 10.0;
-	fieldY = 10.0;
-	speed = 2.0;
+    cellsize = 100.0;
+    gridSizeX = 10.0;
+    gridSizeY = 10.0;
+    speed = 2.0;
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
-	ballArray = new Array();
+    ballArray = new Array();
 
     lightSource = new THREE.PointLight(0xFFFFFF, 1.0, 0.0);
-    lightSource.position.set(30, 20, 20);    
+    lightSource.position.set(30, 20, 20);
     scene.add(lightSource);
-   
+
     camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 9000);
     camera.position.z = 300;
     camera.position.y = 0;
@@ -46,60 +46,62 @@ function main ()
         color: 0x009900,
         side: THREE.DoubleSide,
         map: playingFieldTexture
-    });  
-    
+    });
+
     playingFieldHighlightMaterial = new THREE.MeshBasicMaterial({
         color: 0xcccccc,
         side: THREE.DoubleSide,
         map: playingFieldTexture
-    }); 
-	
-	towerCount = 0;
-	towerArray = new Array();
-    
+    });
+
+    playingFieldChanged = false;
+    towerCount = 0;
+    towerArray = new Array();
+
     playingFieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), playingFieldMaterial);
     playingFieldArray = new Array();
-    for (var i=0.0; i<fieldX; i++)
-    {	
-		towerArray[i] = new Array();
+    pathFindingArray = new Array();
+    for (var i = 0.0; i<gridSizeX; i++)
+    {
+        towerArray[i] = new Array();
         playingFieldArray[i] = new Array();
-        for (var j=0.0; j<fieldY; j++)
+        for (var j = 0.0; j<gridSizeY; j++)
         {
             var playingFieldCell = playingFieldMesh.clone();
             playingFieldCell.position = new THREE.Vector3(i*cellsize, j*cellsize, 0.0);
             playingFieldArray[i][j] = playingFieldCell;
             scene.add(playingFieldCell);
-			
-			// Initialisiere TowerArray mit Bullshit
-			towerArray[i][j] = 0.0;	
+
+            // Initialisiere TowerArray mit Bullshit
+            towerArray[i][j] = 0.0;
         }
     }
-
+    
     scene.add(playingFieldMesh);
     document.addEventListener('keydown', onKeyDown, false);
     mouseClicked = false;
     mouseX = 0.0;
     mouseY = 0.0;
-    selectedField = new THREE.Vector2(5,0);
-    hightlightCell(selectedField.x,selectedField.y);
-	
+    selectedField = new THREE.Vector2(5, 0);
+    hightlightCell(selectedField.x, selectedField.y);
 }
 
-function hightlightCell()
+function hightlightCell ()
 {
     playingFieldArray[selectedField.x][selectedField.y].material = playingFieldHighlightMaterial;
 }
 
-function resetCellMaterial()
+function resetCellMaterial ()
 {
     playingFieldArray[selectedField.x][selectedField.y].material = playingFieldMaterial;
 }
 
-function onKeyDown(event) 
+function onKeyDown (event)
 {
     var e = event.keyCode;
 
-    switch(e) {
+    switch (e)
+    {
         // arrow left
         case 39:
             resetCellMaterial();
@@ -108,19 +110,19 @@ function onKeyDown(event)
             hightlightCell();
             break;
 
-        // arrow right
+            // arrow right
         case 37:
             resetCellMaterial();
             selectedField.x -= 1;
             selectedField.x %= 10;
-            if (selectedField.x < 0)
+            if (selectedField.x<0)
             {
                 selectedField.x = 9;
             }
             hightlightCell();
             break;
 
-        // arrow up
+            // arrow up
         case 38:
             resetCellMaterial();
             selectedField.y += 1;
@@ -133,84 +135,178 @@ function onKeyDown(event)
             resetCellMaterial();
             selectedField.y -= 1;
             selectedField.y %= 10;
-            if (selectedField.y < 0)
+            if (selectedField.y<0)
             {
                 selectedField.y = 9;
             }
             hightlightCell();
             break;
-			
-		//Enter
-		case 13:
-			createTower();
-			break;
-			
-		case 8: 
-			createBall();
-			break;
+
+        //Enter
+        case 13:
+            createTower();
+            break;
+
+        case 8:
+            createBall();
+            break;
     }
 }
 
-function onMouseClick(event)
+function onMouseClick (event)
 {
-   mouseClicked = true;
-   mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-   mouseY = 1 - (event.clientY / window.innerHeight) * 2;
+    mouseClicked = true;
+    mouseX = (event.clientX/window.innerWidth)*2-1;
+    mouseY = 1-(event.clientY/window.innerHeight)*2;
 }
+
+function isDirectionFree(currentFieldX, currentFieldY)
+{
+    if (towerArray[currentFieldX][currentFieldY] !== 0.0)
+    {
+        return false;
+    }
+    return true;
+}
+
+function determineBallPosition(ball)
+{
+    return [Math.floor(ball.position.x/cellsize),
+            Math.floor(ball.position.y/cellsize)];
+}
+
+function moveBall(ballId)
+{
+    var ball = ballArray[ballId];
+    currentFieldX = Math.floor(ball.position.x/cellsize);
+    currentFieldY = Math.floor(ball.position.y/cellsize);
+    
+    deltaX = currentFieldX - pathFindingArray[ballId][0].x;
+    deltaY = currentFieldX - pathFindingArray[ballId][0].y;
+    
+    if (deltaX && deltaY)
+    {
+        pathFindingArray[ballId].splice(0,1);
+        deltaX = pathFindingArray[ballId][0].x - currentFieldX;
+        deltaY = pathFindingArray[ballId][0].y - currentFieldY;       
+    }
+    
+    if (deltaX < 0)
+    {
+        ball.position.y -= speed;
+        return;
+    }
+    
+    if (deltaX > 0)
+    {
+        ball.position.y += speed;
+        return;
+    }
+   
+    if (deltaY < 0)
+    {
+        ball.position.y -= speed;
+        return;
+    }
+   
+    if (deltaY > 0)
+    {
+        ball.position.y += speed;
+        return;
+    }    
+}   
 
 function render ()
 {
-    requestAnimationFrame( render );
+    requestAnimationFrame(render);
     renderer.render(scene, camera);
-	
-	if(ballArray.length > 0) {
-		for(var bla = 0; bla < ballArray.length; bla++) {
-			ballArray[bla].position.y += speed;
-			
-			if(ballArray[bla].position.y > 0.3 * fieldY * cellsize) {
-				scene.remove(ballArray[bla]);
-				ballArray.splice(bla,1);
-			}
-		}
-	}
+
+    if (ballArray.length>0)
+    {
+        for (var ballId = 0; ballId<ballArray.length; ballId++)
+        {
+            if (ballArray[ballId].position.y>0.3*gridSizeY*cellsize)
+            {
+                scene.remove(ballArray[ballId]);
+                ballArray.splice(ballId, 1);
+            }
+            else
+            {
+                if (playingFieldChanged)
+                {
+                    for (var i = 0; i < pathFindingArray.length; i++)
+                    {
+                        findBestPath(i);
+                    }
+                    playingFieldChanged = false;
+                }
+                moveBall(ballId);
+            }
+        }
+    }
 }
 
-function createTower() {
-	var x = selectedField.x;
-	var y = selectedField.y;
-	
-	var cubeMaterial = new THREE.MeshLambertMaterial(
-		{
-			color: 0x00FFFF
-		}
-	);
-	
-	if( towerArray[x][y] == 0.0) {
-		var cube = new THREE.Mesh (new THREE.BoxGeometry(40,40,100, 1,1,1), cubeMaterial);
-		cube.position = playingFieldArray[x][y].position.clone();
-		cube.position.z += 20;
-		
-		towerArray[x][y] = cube;
-		towerCount++;
-		scene.add(cube);
-	} else {
-		scene.remove(towerArray[x][y]);
-		towerArray[x][y] = 0.0;
-	}
+function createTower ()
+{
+    var x = selectedField.x;
+    var y = selectedField.y;
+
+    var cubeMaterial = new THREE.MeshLambertMaterial(
+            {
+                color: 0x00FFFF
+            }
+    );
+
+    if (towerArray[x][y] === 0.0)
+    {
+        var cube = new THREE.Mesh(new THREE.BoxGeometry(40, 40, 100, 1, 1, 1), cubeMaterial);
+        cube.position = playingFieldArray[x][y].position.clone();
+        cube.position.z += 20;
+
+        towerArray[x][y] = cube;
+        towerCount++;
+        scene.add(cube);
+    }
+    else
+    {
+        scene.remove(towerArray[x][y]);
+        towerArray[x][y] = 0.0;
+    }
+    playingFieldChanged = true;
 }
 
-function createBall() {
-	var ballMaterial = new THREE.MeshLambertMaterial(
-		{
-			color: 0x00FFFF
-		}
-	);
-	var randX = Math.floor((Math.random()*10));
-	
-	var ball = new THREE.Mesh (new THREE.SphereGeometry(30,16,16), ballMaterial);
-		ball.position = playingFieldArray[randX][0].position.clone();
-		ball.position.z += 30;
+function findBestPath(ballId) {
+    var currentLength = 100;
+    for (var i = 0; i < 10; i++)
+    {
+        var ballPosition = determineBallPosition(ballArray[ballId]);
+        var currentSolution = a_star(ballPosition, [i, gridSizeY-8], towerArray, gridSizeX, gridSizeY, false);
+        if (currentSolution.length !== 0 && currentSolution.length < currentLength)
+        {
+            pathFindingArray[ballId] = currentSolution;
+            currentLength = currentSolution.length;
+        }
+    }
+}
 
-		ballArray.push(ball);
-		scene.add(ball);
+function createBall ()
+{
+    var ballMaterial = new THREE.MeshLambertMaterial(
+        {
+            color: 0x00FFFF
+        }
+    );
+    var randX = Math.floor((Math.random()*10));
+
+    var ball = new THREE.Mesh(new THREE.SphereGeometry(30, 16, 16), ballMaterial);
+//    ball.position = playingFieldArray[randX][0].position.clone();
+    ball.position = playingFieldArray[3][0].position.clone();
+    ball.position.z += 30.0;
+    ball.position.y = 1.0;
+    
+    pathFindingArray.push(new Array());
+    ballArray.push(ball);
+    findBestPath(ballArray.length - 1);
+
+    scene.add(ball);
 }
