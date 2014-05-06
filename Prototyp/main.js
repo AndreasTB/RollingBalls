@@ -25,6 +25,7 @@ function main ()
     gridSizeX = 10.0;
     gridSizeY = 10.0;
     speed = 2.0;
+    ballRadius = 30.0;
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -83,7 +84,7 @@ function main ()
     mouseX = 0.0;
     mouseY = 0.0;
     selectedField = new THREE.Vector2(5, 0);
-    hightlightCell(selectedField.x, selectedField.y);
+    hightlightCell();
 }
 
 function hightlightCell ()
@@ -180,11 +181,47 @@ function moveBall(ballId)
     var ball = ballArray[ballId];
     currentFieldX = Math.floor(ball.position.x/cellsize);
     currentFieldY = Math.floor(ball.position.y/cellsize);
+
+//    Versuch 1
+//    var ballposition = new THREE.Vector3();
+//    ballposition.getPositionFromMatrix( ball.matrixWorld );
+//    ball.geometry.computeBoundingBox();
+//    var boundingBox = ball.geometry.boundingBox;
+//    
+//    Versuch 2
+//    var ballPosition = new THREE.Vector3();
+//    ballPosition.subVectors( boundingBox.max, boundingBox.min );
+//    ballPosition.multiplyScalar( 0.5 );
+//    //position.add( boundingBox.min );
+//
+//
+//
+//    
+//    ballPosition.applyMatrix4( ball.matrixWorld );
+//    
+//    for (var currentFieldX=0; currentFieldX<gridSizeX; currentFieldX++)
+//    {
+//        if (ball.position.x < playingFieldArray[currentFieldX][0].position.x)
+//        {
+////            currentFieldX--;
+//            break;
+//        }
+//    }
+//    
+//    for (var currentFieldY=0; currentFieldY<gridSizeY; currentFieldY++)
+//    {
+////        if (ball.position.y < playingFieldArray[0][currentFieldY].position.y)
+////        {
+////            currentFieldY--;
+//            //break;
+//            var test= playingFieldArray[0][currentFieldY].position.y;
+////        }
+//    }   
     
-    deltaX = currentFieldX - pathFindingArray[ballId][0].x;
-    deltaY = currentFieldX - pathFindingArray[ballId][0].y;
+    deltaX = pathFindingArray[ballId][0].x - currentFieldX;
+    deltaY = pathFindingArray[ballId][0].y - currentFieldY;
     
-    if (deltaX && deltaY)
+    if (deltaX === 0 && deltaY === 0)
     {
         pathFindingArray[ballId].splice(0,1);
         deltaX = pathFindingArray[ballId][0].x - currentFieldX;
@@ -193,13 +230,13 @@ function moveBall(ballId)
     
     if (deltaX < 0)
     {
-        ball.position.y -= speed;
+        ball.position.x -= speed;
         return;
     }
     
     if (deltaX > 0)
     {
-        ball.position.y += speed;
+        ball.position.x += speed;
         return;
     }
    
@@ -229,6 +266,7 @@ function render ()
             {
                 scene.remove(ballArray[ballId]);
                 ballArray.splice(ballId, 1);
+                pathFindingArray.splice(ballId, 1);
             }
             else
             {
@@ -238,10 +276,10 @@ function render ()
                     {
                         findBestPath(i);
                     }
-                    playingFieldChanged = false;
                 }
                 moveBall(ballId);
             }
+             playingFieldChanged = false;
         }
     }
 }
@@ -280,7 +318,7 @@ function findBestPath(ballId) {
     for (var i = 0; i < 10; i++)
     {
         var ballPosition = determineBallPosition(ballArray[ballId]);
-        var currentSolution = a_star(ballPosition, [i, gridSizeY-8], towerArray, gridSizeX, gridSizeY, false);
+        var currentSolution = a_star(ballPosition, [i, gridSizeY-1], towerArray, gridSizeX, gridSizeY, false);
         if (currentSolution.length !== 0 && currentSolution.length < currentLength)
         {
             pathFindingArray[ballId] = currentSolution;
@@ -298,7 +336,7 @@ function createBall ()
     );
     var randX = Math.floor((Math.random()*10));
 
-    var ball = new THREE.Mesh(new THREE.SphereGeometry(30, 16, 16), ballMaterial);
+    var ball = new THREE.Mesh(new THREE.SphereGeometry(ballRadius, 16, 16), ballMaterial);
 //    ball.position = playingFieldArray[randX][0].position.clone();
     ball.position = playingFieldArray[3][0].position.clone();
     ball.position.z += 30.0;
