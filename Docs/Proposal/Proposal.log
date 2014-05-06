@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.8)  7 APR 2014 16:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.8)  5 MAY 2014 13:02
 entering extended mode
-**E:/2.*Semester/Fortg.*Spiele/Docs/Proposal/Proposal.tex
-("E:/2. Semester/Fortg. Spiele/Docs/Proposal/Proposal.tex"
+**E:/2.*Semester/Fortg.*Spiele/master/Docs/Proposal/Proposal.tex
+("E:/2. Semester/Fortg. Spiele/master/Docs/Proposal/Proposal.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -122,8 +122,8 @@ Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\latin9.def"
-File: latin9.def 2008/03/30 v1.1d Input encoding file
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\latin1.def"
+File: latin1.def 2008/03/30 v1.1d Input encoding file
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
@@ -152,6 +152,9 @@ File: babel.def 2008/07/08 v3.8m Babel common definitions
 \l@naustrian = a dialect from \language\l@ngerman 
 Package babel Info: Making " an active character on input line 92.
 ))
+(C:\Users\doe\AppData\Roaming\MiKTeX\2.9\tex\latex\arial\uarial.sty
+Package: uarial 2006/03/21 1.0 (WaS)
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -257,26 +260,21 @@ Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
 \c@blind@pangramcount=\count110
 \c@blind@pangrammax=\count111
 )
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 13.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmss.fd"
-File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\Proposal.aux"
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\titlepage.aux")
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\Einfuehrung.aux"))
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Proposal.aux"
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\titlepage.aux")
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Einfuehrung.aux"))
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 (C:\Users\doe\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -291,7 +289,7 @@ LaTeX Font Info:    ... okay on input line 15.
 \MPnumerator=\count116
 \makeMPintoPDFobject=\count117
 \everyMPtoPDFconversion=\toks20
-) ("E:\2. Semester\Fortg. Spiele\Docs\Proposal\titlepage.tex"
+) ("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\titlepage.tex"
 <images/welle.png, id=1, 144.54pt x 55.6479pt>
 File: images/welle.png Graphic file (type png)
  <use images/welle.png>
@@ -310,18 +308,53 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 {C:/Users/doe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <E:/2. Semeste
-r/Fortg. Spiele/Docs/Proposal/images/welle.png>])
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\Einfuehrung.tex"
-Kapitel 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+r/Fortg. Spiele/master/Docs/Proposal/images/welle.png>])
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Einfuehrung.tex"
+LaTeX Font Info:    Try loading font information for T1+ua1 on input line 1.
 
-Underfull \hbox (badness 2818) in paragraph at lines 12--13
-[]\T1/cmr/m/n/10.95 Rollgeschwindigkeit der Ku-geln (je
+(C:\Users\doe\AppData\Roaming\MiKTeX\2.9\tex\latex\arial\t1ua1.fd
+File: t1ua1.fd 2006/03/21 Fontinst v1.928 font definitions for T1/ua1.
+)
+LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
+(Font)              scaled to size 10.40245pt on input line 1.
+
+Kapitel 1.
+LaTeX Font Info:    Font shape `T1/ua1/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ua1/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `T1/ua1/b/n' will be
+(Font)              scaled to size 10.40245pt on input line 2.
+LaTeX Font Info:    Font shape `T1/ua1/bx/n' in size <20.74> not available
+(Font)              Font shape `T1/ua1/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `T1/ua1/b/n' will be
+(Font)              scaled to size 19.70294pt on input line 2.
+LaTeX Font Info:    Font shape `T1/ua1/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ua1/b/n' tried instead on input line 7.
+LaTeX Font Info:    Font shape `T1/ua1/b/n' will be
+(Font)              scaled to size 13.67995pt on input line 7.
+LaTeX Font Info:    Font shape `T1/ua1/bx/n' in size <12> not available
+(Font)              Font shape `T1/ua1/b/n' tried instead on input line 10.
+LaTeX Font Info:    Font shape `T1/ua1/b/n' will be
+(Font)              scaled to size 11.39996pt on input line 10.
+
+Underfull \hbox (badness 1348) in paragraph at lines 11--12
+\T1/ua1/m/n/10.95 Der Spie-ler kann den Schwie-rig-keits-grad
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 11--12
+\T1/ua1/m/n/10.95 ne Mög-lich-kei-ten zur Schwie-rig-keits-steue-
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+ua1 on input line 13.
+LaTeX Font Info:    No file OMSua1.fd. on input line 13.
+
+LaTeX Font Warning: Font shape `OMS/ua1/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 13.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+[]\T1/ua1/m/n/10.95 Rollgeschwindigkeit der Ku-geln (je
  []
 
 [2
@@ -329,42 +362,58 @@ Underfull \hbox (badness 2818) in paragraph at lines 12--13
 
 
 
+] [3
+
 ]
 Kapitel 2.
-[3
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+[]\T1/ua1/m/n/10.95 Erscheinen der Spiel-ku-geln als
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 43--47
+[]\T1/ua1/m/n/10.95 was brau-chen wir für den Pro-to-ty-pen
+ []
+
+[4
 
 
 ]
 Kapitel 3.
-) [4
+) [5
 
 
-] ("E:\2. Semester\Fortg. Spiele\Docs\Proposal\Proposal.aux"
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\titlepage.aux")
-("E:\2. Semester\Fortg. Spiele\Docs\Proposal\Einfuehrung.aux")) ) 
+] ("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Proposal.aux"
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\titlepage.aux")
+("E:\2. Semester\Fortg. Spiele\master\Docs\Proposal\Einfuehrung.aux"))
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4288 strings out of 493921
- 65285 string characters out of 3144883
- 180567 words of memory out of 3000000
- 7509 multiletter control sequences out of 15000+200000
- 16470 words of font info for 36 fonts, out of 3000000 for 9000
+ 4313 strings out of 493921
+ 65529 string characters out of 3144883
+ 183676 words of memory out of 3000000
+ 7530 multiletter control sequences out of 15000+200000
+ 41108 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 40i,9n,51p,569b,314s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\doe
-\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1200.pk> <C:\U
-sers\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1440.p
-k> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
-rm1095.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
-pi600\ecsx2074.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
-pen\ec\dpi600\ecrm1440.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
-ur\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts
-\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2
-.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\doe\AppData\Local\
-MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Proposal.pdf (4 pages, 104574 bytes).
+ 40i,9n,51p,1001b,314s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
+sl1095.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecrm1095.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8
+r.enc} <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
+0\ecrm1440.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecbx1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
+knappen\ec\dpi600\ecrm1728.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\fonts\pk\
+ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\doe\AppData\Local\MiKTeX\2.9\f
+onts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/doe/AppData/Roaming/MiKTe
+X/2.9/fonts/type1/urw/arial/ua1b8a.pfb><C:/Users/doe/AppData/Roaming/MiKTeX/2.9
+/fonts/type1/urw/arial/ua1r8a.pfb>
+Output written on Proposal.pdf (5 pages, 88237 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
