@@ -62,8 +62,6 @@ function main ()
         map: playingFieldTexture
     });
 
-    playingFieldChanged = false;
-    towerCount = 0;
     towerArray = new Array();
 
     playingFieldMesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), playingFieldMaterial);
@@ -202,7 +200,7 @@ function moveBall(ballId)
     ball.translateZ( ballSpeed );
 }   
 
-function createTower ()
+function createTower()
 {
     var x = selectedField.x;
     var y = selectedField.y;
@@ -226,7 +224,12 @@ function createTower ()
         cube.position.z += towerHight/2;
 
         towerArray[x][y] = {cube:cube, coolDown:0.0};
-        towerCount++;
+        if (!isPathPossible())
+        {
+            towerArray[x][y] = 0.0;
+            return;
+        }
+        recalculatePaths();
         scene.add(cube);
     }
     else
@@ -234,7 +237,24 @@ function createTower ()
         scene.remove(towerArray[x][y].cube);
         towerArray[x][y] = 0.0;
     }
-    playingFieldChanged = true;
+}
+
+function isPathPossible()
+{
+    return (a_star([0,0], [gridSizeX -1, gridSizeY -1], towerArray, gridSizeX, gridSizeY, false).length !== 0);
+}
+
+
+function recalculatePaths()
+{
+    for (var i = 0; i < pathFindingArray.length; i++)
+    {
+        if (!findBestPath(i))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 function findBestPath(ballId) {
@@ -260,6 +280,12 @@ function findBestPath(ballId) {
             currentLength = currentSolution.length;
         }
     }
+    // no path was found
+    if (currentLength === 100)
+    {
+        return false;
+    }
+    return true;
 }
 
 function createBall ()
@@ -300,22 +326,15 @@ function controlBalls()
             }
             else
             {
-                if (playingFieldChanged)
-                {
-                    for (var i = 0; i < pathFindingArray.length; i++)
-                    {
-                        findBestPath(i);
-                    }
-                }
                 moveBall(ballId);
             }
-             playingFieldChanged = false;
         }        
     }
 }
 
 function fireTowers()
 {
+    var target;
     // no balls no targets
     if (ballArray.length === 0)
     {
@@ -332,7 +351,18 @@ function fireTowers()
                 // -1 means there was no ball found - holding fire
                 if (closestBallId !== -1)
                 {
-                    createBullet(towerArray[x][y].cube.position, ballArray[closestBallId].position);
+                    // Distanz zur nächsten Position
+                    // +x +y +z in Richtung nächster Position
+                    // Relative +x +y +z im Verhältnis der zurückgelegten Distanz
+                    if (pathFindingArray[closestBallId].length > 0)
+                    {
+                        target = calculateAim(towerArray[x][y].cube.position, ballArray[closestBallId].position.clone(), pathFindingArray[closestBallId][0]);
+                    }
+                    else
+                    {
+                        target = ballArray[closestBallId].position;
+                    }
+                    createBullet(towerArray[x][y].cube.position, target);
                     towerArray[x][y].coolDown = 10.0;
                 }
             }
@@ -342,6 +372,39 @@ function fireTowers()
             }
         }
     }
+}
+
+function calculateAim(towerPosition, ballPosition, pathPosition)
+{
+    var distanceToBall = computeDistance(towerPosition, ballPosition);
+    var deltaX = playingFieldArray[pathPosition.x][pathPosition.y].position.x - ballPosition.x;
+    var deltaY = playingFieldArray[pathPosition.x][pathPosition.y].position.y - ballPosition.y;
+    var frames = distanceToBall / bulletSpeed;
+    if (Math.abs(deltaX) > Math.abs(deltaY))
+    {
+        if (deltaX > 0)
+        {
+            ballPosition.x += frames * ballSpeed;
+        }
+        else
+        {
+           ballPosition.x -= frames * ballSpeed;
+        }
+    }
+    else
+    {
+        if (deltaY > 0)
+        {
+            var test;
+            ballPosition.y += frames * ballSpeed;
+            var test2;
+        }
+        else
+        {
+           ballPosition.y -= frames * ballSpeed;
+        }
+    }
+    return ballPosition;
 }
 
 function createBullet (towerPosition, closestBallPosition)
