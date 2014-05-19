@@ -28,13 +28,16 @@ function main ()
     ballRadius = 30.0;
     bulletSpeed = 7.0;
     bulletRadius = 5.0;
+    bulletImpact = 1.0;
     towerHight = 100.0;
     towerFireRate = 0.4;
+    healthMax = 10.0;
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     ballArray = new Array();
+    healthArray = new Array();
 
     lightSource = new THREE.PointLight(0xFFFFFF, 1.0, 0.0);
     lightSource.position.set(30, 20, 20);
@@ -159,6 +162,15 @@ function onKeyDown (event)
     }
 }
 
+function isDirectionFree(currentFieldX, currentFieldY)
+{
+    if (towerArray[currentFieldX][currentFieldY] !== 0.0)
+    {
+        return false;
+    }
+    return true;
+}
+
 function determineBallPosition(ball)
 {
     return [Math.floor(ball.position.x/cellsize),
@@ -194,6 +206,12 @@ function createTower ()
 {
     var x = selectedField.x;
     var y = selectedField.y;
+    
+    // no towers allowed on starting field and last row
+    if (y === 0  || y === gridSizeY -1)
+    {
+        return;
+    }
 
     var cubeMaterial = new THREE.MeshLambertMaterial(
             {
@@ -221,10 +239,20 @@ function createTower ()
 
 function findBestPath(ballId) {
     var currentLength = 100;
-    pathFindingArray[ballId] = new Array();
-    for (var i = 0; i < 10; i++)
+    var ballPosition;
+    // falls ein Pfad existiert und das nächste Ziel nicht von einem neuen Turm versperrt wird
+    if (pathFindingArray[ballId].length > 0
+        && isDirectionFree(pathFindingArray[ballId][0].x, pathFindingArray[ballId][0].y))
     {
-        var ballPosition = determineBallPosition(ballArray[ballId]);
+        // verwende das nächste Ziel als Ausgangspunkt für den neuen Pfad
+        ballPosition = [pathFindingArray[ballId][0].x, pathFindingArray[ballId][0].y];
+    }
+    else
+    {
+        ballPosition = determineBallPosition(ballArray[ballId]);
+    }
+    for (var i = 0; i < gridSizeX; i++)
+    {
         var currentSolution = a_star(ballPosition, [i, gridSizeY-1], towerArray, gridSizeX, gridSizeY, false);
         if (currentSolution.length !== 0 && currentSolution.length < currentLength)
         {
@@ -250,6 +278,7 @@ function createBall ()
     ball.position.y = 1.0;
     
     pathFindingArray.push(new Array());
+    healthArray.push(healthMax);
     ballArray.push(ball);
     findBestPath(ballArray.length - 1);
 
@@ -304,7 +333,7 @@ function fireTowers()
                 if (closestBallId !== -1)
                 {
                     createBullet(towerArray[x][y].cube.position, ballArray[closestBallId].position);
-                    towerArray[x][y].coolDown = 10.0;   
+                    towerArray[x][y].coolDown = 10.0;
                 }
             }
             else
@@ -357,8 +386,16 @@ function testBulletImpact(bullet)
             if ((ballRadius - bulletRadius) > computeDistance(bullet.position, ballArray[ballId].position))
             {
                 // ball hit
+                healthArray[ballId] -= bulletImpact;
                 scene.remove(bullet);
                 return;
+            }
+            if (healthArray[ballId] <= 0.0)
+            {
+                scene.remove(ballArray[ballId]);
+                ballArray.splice(ballId, 1);
+                healthArray.splice(ballId, 1);
+                pathFindingArray.splice(ballId, 1);
             }
         }
     }
