@@ -1,0 +1,12 @@
+# Blender MTL File: 'Turm_rund4_komischveraendert.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.162712 0.162712 0.162712
+Ks 0.101695 0.101695 0.101695
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd testUVmap1.png
